@@ -12,6 +12,8 @@ type Context = {
 }
 
 //? Initialize trpc with a context factory
+//! Context is an object passed to all procedures. Mostly used in authentication
+//! Express equivalent is authentication middleware used in jwt token verification 
 const createContext = ({ req, res }: { req: Request, res: Response }): Context => {
     return {
         userId: req.headers.authorization || undefined,
