@@ -7,6 +7,7 @@ const CreateTodo = () => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
+  const utils = trpc.useUtils();
 
   const mutation = trpc.todo.createTodo.useMutation({
     onSuccess: () => {
@@ -14,6 +15,7 @@ const CreateTodo = () => {
       setDescription("");
       setDueDate("");
       setPriority("low");
+      utils.todo.getAllTodos.invalidate();
     }
   });
 
